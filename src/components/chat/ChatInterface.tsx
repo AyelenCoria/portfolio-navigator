@@ -223,6 +223,24 @@ const formatMessage = (message: string): string => {
     .join('\n\n');
 };
 
+function messageContentToText(content: unknown): string {
+  if (typeof content === "string") return content
+
+  if (Array.isArray(content)) {
+    return content
+      .map((part: any) => {
+        if (typeof part === "string") return part
+        if (part?.type === "text" && typeof part?.text === "string") return part.text
+        if (typeof part?.text === "string") return part.text
+        return ""
+      })
+      .filter(Boolean)
+      .join("")
+  }
+
+  return ""
+}
+
 // ==================================================================
 // COMPONENT
 // ==================================================================
@@ -1499,10 +1517,8 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         {message.type === 'user' && (
           <div className="message-content">
             {formatMessage(
-              typeof content === 'string'
-                ? (content as unknown as string)
-                : (message.content as string)
-            )}
+  messageContentToText(typeof content === "string" ? content : message.content)
+)}
           </div>
         )}
 
