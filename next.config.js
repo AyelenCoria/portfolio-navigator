@@ -40,7 +40,7 @@ const nextConfig = {
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
-              "frame-ancestors 'self' https://framer.com https://*.framer.com https://*.framer.website https://framer.app https://*.framer.app",
+             "frame-ancestors 'self' https://framer.com https://*.framer.com https://framer.app https://*.framer.app https://*.framer.website https://framerusercontent.com https://*.framerusercontent.com https://framerstatic.com https://*.framerstatic.com;",
               "upgrade-insecure-requests"
             ].join('; ')            
           }
