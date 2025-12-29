@@ -2,9 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==================================== */
+/*            DESIGN TOKENS             */
+/* ==================================== */
+
 :root {
-  --font-mono: 'Geist Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+  /* Core Background & Text */
+  /* #011114 => hsl(189, 90%, 4%) */
+  --background: 189 90% 4%;
+  --foreground: 0 0% 93%;   /* #EDEAEA */
+
+  /* Primary (titles, important actions) */
+  --primary: 0 0% 93%;              /* #EDEAEA */
+  --primary-foreground: 189 90% 4%; /* #011114 */
+
+  /* Secondary (accents) */
+  --secondary: 274 30% 84%;         /* #DAC4E1 */
+  --secondary-foreground: 0 0% 12%; /* #1e1e1e */
+
+  /* Accent (chips hover, some UI elements) */
+  --accent: 274 30% 84%;            /* #DAC4E1 */
+  --accent-foreground: 0 0% 12%;    /* #1e1e1e */
+
+  /* Muted (subtle text, background) */
+  --muted: 228 20% 14%;
+  --muted-foreground: 0 0% 75%;
+
+  /* Popover / Menus */
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+
+  /* Card backgrounds */
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+
+  /* Borders */
+  --border: 228 20% 22%;
+
+  /* Inputs and form elements */
+  --input: 228 20% 22%;
+  --ring: 274 30% 84%;
+
+  /* Custom tokens para chips/botones */
+  --chip-bg: #1e1e1e;
+  --chip-text: #DAC4E1;
+
+  /* Avatar tokens (usados en ChatInterface.tsx) */
+  --color-avatar-bg: #DAC4E1;
+  --color-avatar-text: #1e1e1e;
 }
+
+/* ==================================== */
+/*           RESET & GLOBALS            */
+/* ==================================== */
 
 * {
   margin: 0;
@@ -12,90 +65,191 @@
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+html,
+body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
 
+/* Fondo general de la página (detrás del chat) → blanco */
 html {
-  background: url('/assets/background.svg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #ffffff;
 }
 
+/* Tipografía base: Inter 16px */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
   background: transparent;
   min-height: 100vh;
   width: 100vw;
+  color: hsl(var(--foreground));
 }
 
-/* Chat Interface Styles */
-.btn {
-  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+/* FORZAR INTER EN TODO EL CHAT */
+.chat-interface,
+.chat-interface *,
+.chat-header,
+.chat-header *,
+.chat-input-and-buttons-container,
+.chat-input-and-buttons-container *,
+.chat-messages,
+.chat-messages *,
+.message-content,
+.message-content * {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif !important;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.btn-primary {
-  background-color: #dac4e1;
-  color: #002226;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+/* ==================================== */
+/*           CHAT INTERFACE             */
+/* ==================================== */
+
+/* Fondo grande oscuro del chat */
+.chat-interface {
+  background-color: hsl(var(--background)); /* #011114 */
+  color: hsl(var(--foreground));            /* #EDEAEA */
+}
+
+/* Barra superior y franja inferior */
+.chat-header,
+.chat-input-and-buttons-container {
+  background-color: #1e1e1e;
+  border-top: 1px solid #233138;
+  border-bottom: 1px solid #233138;
+}
+
+/* Contenedor de mensajes (scroll, márgenes) */
+.chat-messages {
+  padding: 1.75rem 2rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: #233138;
+  border-radius: 9999px;
+}
+
+/* Texto de mensajes */
+.message-content {
+  color: hsl(var(--foreground)); /* #EDEAEA */
+  line-height: 1.6;
+}
+
+/* Link "More about me →" */
+.more-about-link {
+  color: #EDEAEA;
   font-weight: 500;
-  transition: all 0.2s;
-  outline: none;
+  text-decoration: none;
 }
 
-.btn-primary:hover {
-  background-color: #c9b3d1;
+.more-about-link:hover {
+  text-decoration: underline;
 }
 
-.btn-primary:focus {
-  ring: 2px;
-  ring-color: #dac4e1;
-  ring-offset: 2px;
+/* ==================================== */
+/*      TÍTULO “AYELÉN CORIA”           */
+/* ==================================== */
+
+.chat-title {
+  color: #EDEAEA;
+  font-weight: 600;
 }
 
-.btn-secondary {
-  @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+/* ==================================== */
+/*       BOTONES & CHIPS (Ayelén)       */
+/* ==================================== */
+
+/* Botones genéricos (usados en varios sitios) */
+.btn,
+.resume-download-btn {
+  @apply px-4 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  background-color: var(--chip-bg);      /* #1e1e1e */
+  color: var(--chip-text);               /* #DAC4E1 */
+  border: 1px solid var(--chip-text);    /* stroke #DAC4E1 */
 }
 
-.btn-outline {
-  @apply border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 focus:ring-gray-500;
+/* Estado hover para estos botones */
+.btn:hover,
+.resume-download-btn:hover {
+  background-color: var(--chip-text);    /* #DAC4E1 */
+  color: var(--chip-bg);                 /* #1e1e1e */
 }
 
-.chat-container {
-  @apply max-w-2xl mx-auto p-4;
+/* CHIPS tipo “Back to Experience / Current role details …” */
+.chip-button {
+  background-color: transparent;
+  color: #DAC4E1;
+  border: 1px solid #DAC4E1;
+  border-radius: 9999px;          /* forma pill */
+  padding: 0.45rem 1.3rem;        /* misma sensación de tamaño que el original */
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.message {
-  @apply mb-4 p-4 rounded-lg;
+/* Hover: borde lila → fondo lila + texto oscuro */
+.chip-button:hover {
+  background-color: #DAC4E1;
+  color: #1e1e1e;
 }
 
-.message-user {
-  @apply bg-blue-100 ml-8;
+
+/* Pill que aparece en el chat cuando clicas una chip (usa .btn-primary) */
+.btn-primary {
+  background-color: #DAC4E1;
+  color: #1e1e1e;
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  border: none;
 }
 
-.message-assistant {
-  @apply bg-white border border-gray-200 mr-8;
-}
-
-.input-container {
-  @apply flex gap-2 p-4 bg-white border-t border-gray-200;
-}
-
-.chat-input {
-  @apply flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
-}
-
+/* Botón del avioncito (enviar) */
 .send-button {
-  @apply px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2;
+  padding: 0.45rem 0.7rem;
+  background-color: var(--chip-bg);
+  color: var(--chip-text);
+  border: 1px solid var(--chip-text);
 }
 
-/* Loading animation */
+.send-button:hover {
+  background-color: var(--chip-text);
+  color: var(--chip-bg);
+}
+
+/* Input del chat */
+.chat-input {
+  @apply flex-1 px-4 py-2 rounded-lg focus:outline-none;
+  background-color: #181818;
+  border: 1px solid #333333;
+  color: hsl(var(--foreground));
+}
+
+.chat-input::placeholder {
+  color: rgba(237, 234, 234, 0.55);
+}
+
+/* ==================================== */
+/*          LOADING DOTS                */
+/* ==================================== */
+
 .loading-dots {
   @apply inline-flex gap-1;
 }
@@ -105,21 +259,87 @@ body {
   animation-delay: calc(var(--i) * 0.2s);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .chat-container {
-    @apply p-2;
-  }
-  
-  .message {
-    @apply mx-2;
-  }
-  
-  .message-user {
-    @apply ml-4;
-  }
-  
-  .message-assistant {
-    @apply mr-4;
-  }
+/* ==================================== */
+/*          BOTONES DEL FOOTER          */
+/*    (My Work – Experience – Skills…)  */
+/* ==================================== */
+
+.button-grid .btn,
+.main-menu-buttons .btn {
+  background-color: #1e1e1e !important;
+  color: #DAC4E1 !important;
+  border-radius: 9999px !important;
+  border: 1px solid #DAC4E1 !important;
+  font-weight: 500 !important;
+  padding: 0.45rem 1.1rem !important;
+font-size: 1rem !important; /* 16px */
 }
+
+/* Hover del footer (igual al que ya tenías) */
+.button-grid .btn:hover,
+.main-menu-buttons .btn:hover {
+  background-color: #DAC4E1 !important;
+  color: #1e1e1e !important;
+}
+
+/* ==================================== */
+/*           INPUT DE TEXTO             */
+/* ==================================== */
+
+.chat-input {
+  background-color: #181818 !important;
+  border: 1px solid #333333 !important;
+  color: #EDEAEA !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+}
+
+.chat-input::placeholder {
+  color: rgba(237, 234, 234, 0.55) !important;
+}
+/* ==================================== */
+/*   OVERRIDES FINALES TIPOGRAFÍA CHAT  */
+/*   Inter 16px en todo el chatbot      */
+/* ==================================== */
+
+.chat-interface {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.chat-interface * {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+/* ==================================== */
+/*      PILL ACTIVA (Experience, etc)   */
+/*      Inter 16px + fondo rosa         */
+/* ==================================== */
+
+.btn-primary {
+  padding: 8px 16px !important;
+  border-radius: 9999px !important;
+
+  background-color: #DAC4E1 !important;  /* mismo rosa que chips */
+  color: #011114 !important;             /* texto casi negro */
+
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+
+  border: none !important;
+}
+
+/* Hover (por si tiene estado hover) */
+.btn-primary:hover {
+  background-color: #DAC4E1 !important;
+  color: #011114 !important;
+}
+
+
+

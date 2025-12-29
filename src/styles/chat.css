@@ -18,6 +18,7 @@
 .portfolio-display .overflow-x-auto::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.8);
 }
+
 .chat-interface {
   width: 100%;
   max-width: 800px;
@@ -144,43 +145,43 @@
   font-family: var(--font-mono), 'GeistMonoVF', 'GeistMono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
 
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-    scroll-behavior: smooth;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    /* Ensure smooth scrolling and proper scroll behavior */
-    scroll-behavior: smooth;
-    scroll-padding-top: 20px;
-    scroll-padding-bottom: 20px;
-    /* Prevent expansion beyond container */
-    max-height: calc(100% - 120px); /* Account for header and input area */
-  }
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  /* Ensure smooth scrolling and proper scroll behavior */
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+  scroll-padding-bottom: 20px;
+  /* Prevent expansion beyond container */
+  max-height: calc(100% - 120px); /* Account for header and input area */
+}
 
-  /* Custom scrollbar styling */
-  .chat-messages::-webkit-scrollbar {
-    width: 8px;
-  }
+/* Custom scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .chat-messages::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-  }
+.chat-messages::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
 
-  .chat-messages::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 4px;
-  }
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+}
 
-  .chat-messages::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-  
-  /* Even smaller font size for mobile agent responses */
-  .assistant-message .message-content {
-    font-size: 13px;
-  }
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Even smaller font size for mobile agent responses */
+.assistant-message .message-content {
+  font-size: 13px;
+}
 
 /* Ensure proper spacing for messages */
 .message {
@@ -195,16 +196,16 @@
 }
 
 .chat-interface .user-message {
-  background: #b4d5da;
-  color: #002226;
-  padding: 8px 12px;
+  background: #dac4e1;
+  color: #1e1e1e;
+  padding: 8px 16px;
   border-radius: 20px;
   width: fit-content;
   max-width: 300px;
   margin-left: auto;
   text-align: right;
   font-weight: 500;
-  font-family: 'GeistMonoVF', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   font-size: 14px;
   line-height: 1.2;
   margin-bottom: 0;
@@ -215,12 +216,16 @@
   line-height: 1.2 !important;
   margin-bottom: 0 !important;
   white-space: pre-line;
-  font-family: 'GeistMonoVF', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace !important;
+
+  /* aquí forzamos Inter y el color correcto */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif !important;
   font-size: 14px !important;
+  color: #1e1e1e !important;
 }
 
+/* ===== ESPACIADO DE TEXTO PRINCIPAL ===== */
 .message-content {
-  white-space: pre-line;
   line-height: 1.6;
   margin-bottom: 16px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
@@ -238,20 +243,15 @@
   line-height: 1.5;
 }
 
-/* Custom bullet points for lines starting with • */
-.message-content:has(br) {
-  line-height: 1.8;
-}
-
-/* Ensure proper spacing between paragraphs */
+/* Espaciado uniforme entre párrafos (global, en todo el chatbot) */
 .message-content p {
-  margin: 12px 0;
+  margin: 16px 0;
 }
 
-/* Enhanced spacing for formatted content */
+
+/* Enhanced spacing for formatted content dentro de mensajes del asistente */
 .assistant-message .message-content {
-  white-space: pre-line;
-  line-height: 1.7;
+  line-height: 1.6;
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 0.7);
@@ -292,7 +292,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #b4d5da;
+  color: #DAC4E1;
   font-size: 13px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   flex: 1;
@@ -326,31 +326,23 @@
   font-family: var(--font-mono), 'GeistMonoVF', 'GeistMono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace !important;
 }
 
-/* Enhanced spacing for bullet points and lists */
+/* Enhanced spacing para contenido no vacío */
 .message-content:not(:empty) {
   position: relative;
 }
 
-/* Ensure proper spacing between different types of content */
+/* ESPACIO ENTRE PÁRRAFOS (saltos de línea) EN MENSAJES DEL ASISTENTE */
+.assistant-message .message-content br {
+  display: block;         /* hace que el br actúe como bloque */
+  content: "";            /* por si acaso en algunos navegadores */
+  margin-top: 24px;        /* espacio para un salto de línea \n */
+}
+
+/* Espacio extra cuando hay dos saltos seguidos (\n\n) */
 .assistant-message .message-content br + br {
-  margin-top: 8px;
+  margin-top: 16px;       /* espacio más grande para “doble renglón” */
 }
 
-/* Style bullet points and lists */
-.message-content {
-  /* Ensure proper spacing for formatted content */
-  line-height: 1.7;
-}
-
-/* Better spacing for lines with bullet points */
-.message-content:has(br) {
-  line-height: 1.8;
-}
-
-/* Ensure proper spacing between paragraphs */
-.message-content p {
-  margin: 12px 0;
-}
 
 .button-grid {
   display: flex;
@@ -538,7 +530,7 @@ button {
 .chat-interface .resume-note,
 .chat-interface .thinking-animation,
 .chat-interface .thinking-animation * {
-  font-family: 'GeistMonoVF', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 /* Ensure any button-like elements also use monospace */
@@ -564,9 +556,6 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  /* color: #6b7280; */
-  /* font-style: italic; */
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; */
 }
 
 .loading-indicator .avatar-container {
@@ -580,12 +569,6 @@ button {
 
 /* Thinking animation with bouncing dots - DISABLED for new implementation */
 .thinking-animation {
-  /* position: absolute; */
-  /* right: -40px; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
-  /* display: flex; */
-  /* gap: 4px; */
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -778,7 +761,6 @@ button {
   }
   
   .thinking-animation {
-    /* right: -32px; */
   }
   
   .dot {
@@ -1097,4 +1079,199 @@ button {
 
 .loading-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-} 
+}
+
+/* Alinear avatar y texto en una fila */
+.assistant-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.assistant-avatar {
+  flex-shrink: 0;
+}
+
+/* Forzar Inter en botones, chips y pills del chat */
+.chat-interface .btn,
+.chat-interface .btn *,
+.chat-interface .chip-button,
+.chat-interface .chip-button *,
+.chat-interface .btn-primary,
+.chat-interface .btn-primary *,
+.chat-interface .resume-download-btn,
+.chat-interface .resume-download-btn *,
+.chat-interface .contact-action-btn,
+.chat-interface .contact-action-btn * {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif !important;
+}
+
+/* ============================================ */
+/* FIX: UNIFICAR PADDING DE BOTONES Y CHIPS     */
+/* ============================================ */
+
+.chat-interface .btn,
+.chat-interface .btn-primary,
+.chat-interface .btn-secondary,
+.chat-interface .btn-outline,
+.chat-interface .chip-button,
+.chat-interface button.chip-button {
+  padding: 8px 16px !important;
+  height: auto !important;       /* quitamos alturas fijas */
+  min-height: 0 !important;
+  max-height: none !important;
+  border-radius: 9999px !important; /* forma redondeada igual */
+  font-size: 14px !important;     /* tamaño elegante */
+  line-height: 1.2 !important;
+}
+
+/* Para el texto interno de los botones */
+.chat-interface .btn *,
+.chat-interface .chip-button * {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+/* ===================================================== */
+/* FORCE PROPER STYLE FOR THE ACTIVE “PILL” CHIP */
+/* ===================================================== */
+
+.chat-interface .btn-primary {
+  background-color: #DAC4E1 !important;
+  color: #012b31 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 8px 16px !important;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Hover (optional, por si quieres consistencia) */
+.chat-interface .btn-primary:hover {
+  background-color: #DAC4E1 !important;
+  color: #012b31 !important;
+}
+
+/* ===================================================== */
+/* FINAL OVERRIDE: ACTIVE SECTION PILL (e.g. "Experience") */
+/* ===================================================== */
+
+.chat-interface .btn.btn-primary,
+.chat-interface button.btn-primary {
+  background-color: #DAC4E1 !important;          /* fondo rosa-lila */
+  color: #012B31 !important;                      /* texto oscuro */
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 8px 16px !important;                   /* 8px x 16px */
+  font-family: Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+/* Aseguramos que cualquier texto interno también use Inter */
+.chat-interface .btn.btn-primary *,
+.chat-interface button.btn-primary * {
+  font-family: Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* =============================================== */
+/* FIX: SOLO las pills verde-agua del menú inferior */
+/* =============================================== */
+
+.chat-interface .btn-outline {
+  background-color: #DAC4E1 !important; /* nuevo fondo rosado     */
+  color: #1E1E1E !important;            /* texto oscuro          */
+  border-color: #DAC4E1 !important;     /* sin borde violeta     */
+  font-family: Inter, sans-serif !important;
+}
+
+/* FIX DEFINITIVO: padding solo para los botones del menú inferior */
+.chat-interface .main-menu-buttons button.btn.flex-shrink-0 {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* ================================================== */
+/* HEADER CTA: "Chat with me" con red de puntitos     */
+/* ================================================== */
+
+.chat-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: none;
+  background-color: #DAC3E1;   /* fondo */
+  color: #1E1E1E;              /* texto */
+  cursor: pointer;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px;
+  font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.chat-cta-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Cuadrícula de puntitos animados */
+.chat-cta-dots {
+  display: grid;
+  grid-template-columns: repeat(4, 4px);
+  grid-auto-rows: 4px;
+  gap: 3px;
+}
+
+.chat-cta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #8b7aa6;
+  opacity: 0.4;
+  animation: chatDotsPulse 1.4s ease-in-out infinite;
+}
+
+/* delays */
+.chat-cta-dot:nth-child(4n + 1) { animation-delay: 0s; }
+.chat-cta-dot:nth-child(4n + 2) { animation-delay: 0.1s; }
+.chat-cta-dot:nth-child(4n + 3) { animation-delay: 0.2s; }
+.chat-cta-dot:nth-child(4n + 4) { animation-delay: 0.3s; }
+
+@keyframes chatDotsPulse {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-1px); }
+}
+
+.chat-cta-label {
+  white-space: nowrap;
+}
+
+/* FIX FINAL, que la pill rosa tenga el mismo tamaño que las demás chips */
+.chat-interface .btn-primary,
+.chat-interface button.btn-primary {
+  font-size: 14px !important;     /* mismo tamaño de texto que las chips normales */
+  padding: 8px 16px !important;   /* mismo padding que las chips normales */
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+}
+
+/* Estilo universal para todos los links dentro del chat */
+.chat-interface .message-content a {
+  color: #DAC3E1;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.chat-interface .message-content a:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}

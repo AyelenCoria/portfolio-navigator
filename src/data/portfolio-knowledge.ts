@@ -11,34 +11,32 @@ export const PORTFOLIO_KNOWLEDGE = {
   // PERSONAL INFORMATION
   // =============================================================================
   personal: {
-    name: "[Your Full Name]",
-    title: "[Your Professional Title]", // e.g., "Senior UX Designer", "Full-Stack Developer"
-    location: "[Your City, State/Country]",
-    email: "[your.email@example.com]",
-    linkedin: "[linkedin.com/in/your-profile]",
-    github: "[github.com/your-username]", // if applicable
-    portfolio: "[your-portfolio-website.com]", // if applicable
+    name: "Ayelén Coria",
+    title: "UX/UI Designer",
+    location: "Paris, France",
+    email: "[hello.ayelencoria@gmail.com.com]",
+    linkedin: "www.linkedin.com/in/ayelencoria",
+    Medium: "https://medium.com/@rayelencoria", // if applicable
+    portfolio: "https://ayelencoria.framer.website/", // if applicable
     
     // Brief elevator pitch - 2-3 sentences about who you are
     elevator_pitch: `
     [Write a compelling 2-3 sentence summary of who you are professionally. 
-    Example: "I'm a product designer with 6+ years of experience creating user-centered 
-    digital experiences for fintech and healthcare companies. I specialize in design 
-    systems and have led cross-functional teams to deliver award-winning mobile and web applications."]
+    Example: "I'm a Franco-Argentinian UX/UI Designer creating empathetic digital products thought user-centered design"]
     `,
     
     // Your professional values and what drives you
     values: [
-      "[Core value 1 - e.g., 'User-centered design']",
-      "[Core value 2 - e.g., 'Continuous learning']", 
-      "[Core value 3 - e.g., 'Collaborative leadership']"
+      "User-centered design and data driven decision-making",
+      "Continuous learning and multidisciplinary thinking", 
+      "Clear communication and cross-functional collaboration"
     ],
     
     // What you're passionate about in your field
     passions: [
-      "[Passion 1 - e.g., 'Accessibility in design']",
-      "[Passion 2 - e.g., 'Mentoring junior developers']",
-      "[Passion 3 - e.g., 'Sustainable technology solutions']"
+      "Research-driven product design and understanding user behavior in context",
+      "Accessibility and inclusive design",
+      "Design systems and creating clear visual structures"
     ]
   },
 
@@ -47,369 +45,422 @@ export const PORTFOLIO_KNOWLEDGE = {
   // =============================================================================
   experience: {
     current_role: {
-      title: "[Your Current Job Title]",
-      company: "[Company Name]", 
-      duration: "[Start Date] - Present", // e.g., "Jan 2022 - Present"
-      location: "[City, State/Remote]",
+      title: "UX/UI Designer & Digital Marketing Specialist",
+      company: "Freelancer", 
+      duration: "2024 - Present",
+      location: "Remote",
       
-      description: `
-      [Write a comprehensive description of your current role. Include:
-      - What the company does and your role in it
-      - Key responsibilities and daily tasks
-      - Team size and structure you work with
-      - Notable projects or initiatives you've led
-      - Technologies, tools, or methodologies you use]
-      `,
+  description: `
+    As a freelance UX/UI Designer and Digital Marketing Specialist, I design digital products for web and mobile that prioritize clarity, accessibility, and user-centered thinking. I work across research, strategy, and interface design: conducting user interviews and UX audits, building information architecture, designing wireframes, flows, and high-fidelity prototypes, and creating scalable design systems. I also support clients with content strategy, SEO, and visual communication to ensure consistency across touchpoints.
+  `,
+},
       
       key_achievements: [
-        "[Achievement 1 with specific metrics - e.g., 'Increased user engagement by 35% through redesign of core product features']",
-        "[Achievement 2 with impact - e.g., 'Led migration to new tech stack, reducing build times by 50%']",
-        "[Achievement 3 with recognition - e.g., 'Mentored 5 junior designers, 3 of whom were promoted within 18 months']"
+        "Created and documented reusable design systems with tokens, style guides, and scalable UI patterns",
+        "Delivered UX audits and heuristic evaluations that improved usability and clarified product strategy",
+        "Redesigned web experiences and mobile interfaces that enhanced clarity, accessibility, and user satisfaction"
       ],
       
       technologies: [
         // List relevant technologies, tools, or methodologies
-        "[Tool/Technology 1]",
-        "[Tool/Technology 2]", 
-        "[Tool/Technology 3]"
+        "Figma",
+        "Miro", 
+        "Maze",
+"WordPress",
+"Framer",
+"Salerforce",
+"Asana",
+"Zapier",
+"HTML/CSS (basic)",
+"AI tools (ChatGPT, Claude, Perplexity, Lovable, MagicPath)"
       ]
     },
     
-    previous_roles: [
-      {
-        title: "[Previous Job Title]",
-        company: "[Company Name]",
-        duration: "[Start Date] - [End Date]",
-        location: "[City, State/Remote]",
-        
-        description: `
-        [Description of this role and why it was important for your career growth]
-        `,
-        
-        key_achievements: [
-          "[Achievement 1]",
-          "[Achievement 2]"
-        ],
-        
-        technologies: [
-          "[Technology 1]",
-          "[Technology 2]"
-        ]
-      },
-      // Add more previous roles as needed
-      {
-        title: "[Another Previous Role]",
-        company: "[Company Name]", 
-        duration: "[Start Date] - [End Date]",
-        location: "[City, State/Remote]",
-        description: "[Brief description]",
-        key_achievements: ["[Achievement]"],
-        technologies: ["[Technology]"]
-      }
-    ]
-  },
+previous_roles: [
+  "Before transitioning fully into UX/UI, Ayelén worked for several years in education and research. She taught History and Political Science in international schools and universities, led student research projects, and collaborated in academic environments. This background shaped her analytical thinking, communication clarity, and human-centered design approach.",
+  "Her background in Political Science and History enriches her design practice, something she explores in depth in her Medium article about why political sciences make her a better UX/UI designer."
+],
+
+
 
   // =============================================================================
   // FEATURED PROJECTS
   // =============================================================================
-  projects: {
+    projects: {
     featured: [
       {
-        name: "[Project Name 1]",
-        type: "[Project Type - e.g., 'Mobile App', 'Web Platform', 'Design System']",
-        company: "[Company/Client Name or 'Personal Project']",
-        duration: "[Timeline - e.g., '3 months', 'Q2 2023']",
-        team_size: "[Number of team members and your role]",
-        
+        name: "Hydra — Global Design System for La Roche-Posay",
+        type: "Design System Case Study",
+        company: "La Roche-Posay (L’Oréal Group)",
+        timeframe: "2024",
+        role: "UX/UI Designer",
         overview: `
-        [2-3 sentence overview of what this project was and why it was important]
+Hydra is the global Design System I created for La Roche-Posay after uncovering severe fragmentation across their French and Spanish websites.
+Through a full audit and heuristic analysis, I identified major accessibility gaps and inconsistencies that weakened the brand’s digital identity.
+Hydra unifies components, foundations, and guidelines into a scalable system aligned with accessibility and global brand coherence.
         `,
-        
         challenge: `
-        [Describe the problem or challenge this project addressed. Be specific about:
-        - What was broken or missing?
-        - Who was affected and how?
-        - Why was this important to solve?]
+La Roche-Posay’s digital ecosystem was fragmented across markets: each country used different colors, typography, components, and UX patterns.
+Core elements like primary CTAs failed WCAG contrast requirements, creating accessibility and usability issues for millions of users worldwide.
+This fragmentation made the brand feel inconsistent, weakened trust, and increased design and development inefficiency across local teams.
         `,
-        
         solution: `
-        [Describe your approach and solution. Include:
-        - Your methodology or process
-        - Key decisions you made and why
-        - How you collaborated with others
-        - Unique or innovative aspects of your solution]
+I conducted a full audit and heuristic evaluation using Nielsen’s principles, mapping inconsistencies in color, typography, hierarchy, and component behavior.
+A key design decision was separating brand color from functional UI after discovering the iconic blue failed WCAG contrast when used in CTAs.
+I introduced an accessible dark CTA color, redefined foundations (color, type, grid, spacing), and built Hydra using Atomic Design, design tokens,
+AutoLayout, and comprehensive documentation. This created a unified, scalable, and accessibility-first Design System for all markets.
         `,
-        
         your_role: `
-        [Specifically what YOU did on this project:
-        - Your responsibilities
-        - Parts you owned end-to-end
-        - Leadership or mentoring aspects
-        - Cross-functional collaboration]
+I led the project end-to-end: audit, heuristic analysis, accessibility exploration, creation of foundations, component architecture, and documentation.
+I designed tokens, atoms, molecules, organisms, templates, and pages, and defined the global rules for accessibility and visual consistency.
+I collaborated with another designer reviewing market differences and aligning structure across locales.
         `,
-        
-        technologies: [
-          "[Technology/Tool 1]",
-          "[Technology/Tool 2]",
-          "[Technology/Tool 3]"
-        ],
-        
+        technologies: ["Figma", "Design Tokens", "Atomic Design"],
         results: {
           metrics: [
-            "[Quantifiable result 1 - e.g., '40% increase in user conversion']",
-            "[Quantifiable result 2 - e.g., 'Reduced loading time by 2.3 seconds']",
-            "[Quantifiable result 3 - e.g., '95% positive user feedback score']"
+            "Unified two fragmented digital systems into one global framework",
+            "Ensured WCAG-compliant CTAs after switching from non-accessible brand blue",
+            "Reduced design and development time through reusable components"
           ],
-          
           impact: `
-          [Describe the broader impact:
-          - How it affected users
-          - Business outcomes
-          - Team or organizational benefits
-          - Long-term effects]
+Hydra established a shared, accessible, and scalable digital ecosystem for La Roche-Posay’s international markets.
+It improved accessibility compliance, strengthened brand consistency, and reduced cognitive load for users.
+Internally, it provided teams with a single source of truth, cutting duplication and enabling faster, higher-quality delivery.
           `,
-          
           learnings: [
-            "[Key learning 1]",
-            "[Key learning 2]",
-            "[Key learning 3]"
+            "Accessibility must guide visual decisions, not follow them",
+            "A Design System succeeds only with strong foundations and clear documentation",
+            "Fragmentation across markets often reveals deeper structural issues that a system can solve"
           ]
         },
-        
         links: {
-          live_site: "[URL if publicly accessible]",
-          case_study: "[URL to detailed case study if available]", 
-          github: "[GitHub repo if applicable]"
+          live_site: "https://ayelencoria.framer.website/works/larocheposay",
+          medium: "https://medium.com/@rayelencoria/hydra-the-design-system-for-la-roche-posay-878d2f9eec5e"
         }
       },
-      
-      // Add 2-3 more featured projects following the same structure
+
       {
-        name: "[Project Name 2]",
-        type: "[Project Type]",
-        company: "[Company/Client]",
-        duration: "[Timeline]",
-        team_size: "[Team info]",
-        overview: "[Overview]",
-        challenge: "[Challenge description]",
-        solution: "[Solution description]", 
-        your_role: "[Your specific role]",
-        technologies: ["[Tech 1]", "[Tech 2]"],
+        name: "Map&Go – Rethinking the Housing Search Experience",
+        type: "UX Case Study / Design Thinking Project",
+        company: "Self-initiated research (Housing in Spain)",
+        timeframe: "8 weeks (2025)",
+        role: "UX Researcher & Product Designer",
+        overview: `
+A human-centered project that applies Design Thinking to improve the experience of searching for housing in Spain.
+Through research, synthesis and iterative testing, Map&Go turns physical “For Rent” signs into organized, geolocated opportunities,
+bridging the gap between analog habits and digital tools.
+        `,
+        challenge: `
+The housing crisis in Spain makes the search for a home exhausting, fragmented and emotionally draining.
+Users deal with scattered information, lack of trust, and analog habits that digital platforms ignore.
+The challenge was to design value within a problem too large to solve — improving the experience without pretending to fix the entire system.
+        `,
+        solution: `
+Using the Double Diamond framework, I conducted deep user research, defined insights, ideated multiple paths, and developed Map&Go:
+a mobile feature that scans street signs with OCR and organizes them directly in Google Maps.
+The solution gives users clarity, control and an intuitive flow that integrates seamlessly into everyday behavior.
+        `,
+        your_role: `
+UX Researcher & Product Designer.
+I led user research (desk research, netnography, survey, interviews), synthesis (personas, empathy maps, journeys),
+ideation, prototyping in Figma and user testing with 15 participants.
+        `,
+        technologies: ["Figma", "Mobile OCR (concept)", "Google Maps API (concept)"],
         results: {
-          metrics: ["[Metric 1]", "[Metric 2]"],
-          impact: "[Impact description]",
-          learnings: ["[Learning 1]", "[Learning 2]"]
+          metrics: [
+            "15 users tested — 100% found the flow intuitive",
+            "Zero friction reported thanks to the integration with familiar tools",
+            "High perceived usefulness across age and language groups"
+          ],
+          impact: `
+Map&Go showed that even within a structural housing crisis, design can meaningfully improve how people navigate the search for a home,
+adding clarity, simplicity and a sense of agency to a process often marked by frustration.
+          `,
+          learnings: [
+            "Design cannot fix structural problems, but it can humanize the experience around them",
+            "Small, behavior-based insights often lead to the most impactful solutions"
+          ]
         },
         links: {
-          live_site: "[URL]",
-          case_study: "[URL]"
+          live_site: "https://ayelencoria.framer.website/works/map-go",
+          medium: "https://medium.com/@rayelencoria/simplifying-the-housing-struggle-cfc49ba69587"
+        }
+      },
+
+      {
+        name: "Oxzen Pilates App Redesign",
+        type: "Heuristic Evaluation & UX/UI Redesign",
+        company: "Oxzen Pilates (Buenos Aires)",
+        timeframe: "May – June 2025",
+        role: "UX/UI Designer",
+        overview: `
+A UX case study focused on evaluating and redesigning Oxzen Pilates’ mobile app using Jakob Nielsen’s 10 Usability Heuristics.
+The goal was to transform a confusing, outdated experience into a clearer, calmer, and more consistent wellness platform.
+        `,
+        challenge: `
+The app technically worked but lacked usability and guidance.
+Users often faced empty screens, unclear actions, and inconsistent visuals.
+The challenge was to identify these friction points and translate them into actionable design improvements aligned with Oxzen’s brand.
+        `,
+        solution: `
+Through a heuristic evaluation, I mapped usability issues and redesigned key flows to improve clarity, hierarchy and navigation.
+The new design applied the Empty State pattern to replace dead-end screens with helpful messages and clear next steps.
+I also explored AI-assisted tools like MagicPath to imagine future calendar and booking flows.
+        `,
+        your_role: `
+UX/UI Designer — responsible for research, analysis, wireframing, high-fidelity design and AI-assisted prototyping.
+        `,
+        technologies: ["Figma", "MagicPath AI", "Notion"],
+        results: {
+          metrics: [
+            "Simplified navigation flow",
+            "Improved task clarity through guided empty states"
+          ],
+          impact: `
+The redesigned interface reduced confusion, strengthened brand consistency, and laid the foundation for future user testing and expanded flows.
+          `,
+          learnings: [
+            "Designing for empty states is as important as designing for full ones",
+            "AI tools can accelerate ideation while keeping the design human-centered"
+          ]
+        },
+        links: {
+          live_site: "https://ayelencoria.framer.website/works/pilates-app",
+          case_study: "https://ayelens-organization.gitbook.io/heuristicas/",
+          medium: "https://medium.com/@rayelencoria/a-blank-screen-a-confused-user-and-a-much-needed-redesign-b2f9c14648a3"
+        }
+      },
+
+      {
+        name: "Etna: AR for Climate Resilience",
+        type: "UX/UI Case Study & MVP Validation",
+        company: "Self-initiated project",
+        timeframe: "4 weeks (2025)",
+        role: "UX/UI Designer",
+        overview: `
+Etna is a conceptual AR tool designed to support wildfire prevention, emergency action and post-fire regeneration.
+The project involved defining the value proposition, creating an interactive prototype, and developing a WordPress landing page to validate early interest.
+        `,
+        challenge: `
+Wildfires are increasing in frequency and intensity, yet environmental professionals lack intuitive, real-time tools to anticipate risks and act quickly.
+The challenge was to communicate a complex AR concept clearly and test whether the idea resonated with potential users.
+        `,
+        solution: `
+We designed a responsive landing page to introduce Etna’s value proposition with clarity and impact.
+Built in WordPress, the page integrated visual mockups, video and illustrative assets to explain core features.
+The MVP approach enabled early validation through traffic, scroll depth and contact form submissions.
+        `,
+        your_role: `
+UX/UI Designer — responsible for research, value proposition definition, wireframing, visual design, prototyping,
+accessibility considerations and WordPress development.
+        `,
+        technologies: ["WordPress", "Figma"],
+        results: {
+          metrics: [
+            "62 sessions and 44 unique users in 48 hours (organic traffic)",
+            "51.32% average scroll depth and 1.3 min time on page"
+          ],
+          impact: `
+Validated early interest in Etna’s concept, identified opportunities to improve visibility, storytelling flow and conversion,
+and informed next steps for refining the MVP and AR prototype.
+          `,
+          learnings: [
+            "MVP landing pages are powerful for validating early hypotheses",
+            "Storytelling structure significantly influences mid-scroll engagement"
+          ]
+        },
+        links: {
+          live_site: "",
+          case_study: ""
         }
       }
-    ],
-    
-    side_projects: [
-      {
-        name: "[Side Project Name]",
-        description: "[Brief description of personal project, open source contribution, or experiment]",
-        technologies: ["[Tech 1]", "[Tech 2]"],
-        motivation: "[Why you built this]",
-        outcome: "[What you learned or achieved]",
-        link: "[GitHub or live site URL]"
-      }
-      // Add more side projects as needed
     ]
   },
+
+
 
   // =============================================================================
   // SKILLS & EXPERTISE
   // =============================================================================
   skills: {
-    technical: {
-      // Customize these categories based on your field
-      programming_languages: [
-        {
-          name: "[Language 1 - e.g., 'JavaScript']",
-          proficiency: "[Proficiency level - e.g., 'Expert', 'Advanced', 'Intermediate']",
-          years_experience: "[Number] years",
-          context: "[Where/how you use it]"
-        },
-        {
-          name: "[Language 2]",
-          proficiency: "[Level]", 
-          years_experience: "[Number] years",
-          context: "[Context]"
-        }
-      ],
-      
-      frameworks_tools: [
-        {
-          category: "[Category - e.g., 'Frontend Frameworks']",
-          items: [
-            {
-              name: "[Tool/Framework 1]",
-              proficiency: "[Level]",
-              context: "[Usage context]"
-            },
-            {
-              name: "[Tool/Framework 2]", 
-              proficiency: "[Level]",
-              context: "[Usage context]"
-            }
-          ]
-        }
-      ],
-      
-      // For designers, you might have:
-      design_tools: [
-        {
-          name: "[Design Tool - e.g., 'Figma']",
-          proficiency: "[Level]",
-          years_experience: "[Number] years",
-          specialization: "[What you use it for]"
-        }
-      ],
-      
-      // For other fields, add relevant categories:
-      methodologies: [
-        "[Methodology 1 - e.g., 'Agile/Scrum']",
-        "[Methodology 2 - e.g., 'Design Thinking']",
-        "[Methodology 3 - e.g., 'Test-Driven Development']"
-      ]
-    },
+  technical: {
+    programming_languages: [
+      {
+         name: "Design Tools",
+    specialization: "Figma, Zeroheight, Framer, Miro, Maze, Notion, WordPress, and AI tools such as ChatGPT, Claude, Perplexity, Lovable, and MagicPath — used regularly for design systems, UI design, prototyping, testing, documentation, and workflow optimization."
+  }
+],
     
-    domain_expertise: [
-      {
-        area: "[Expertise Area 1 - e.g., 'User Research']",
-        description: "[What this expertise entails and your experience with it]",
-        techniques: ["[Technique 1]", "[Technique 2]"]
-      },
-      {
-        area: "[Expertise Area 2 - e.g., 'Performance Optimization']", 
-        description: "[Description]",
-        techniques: ["[Technique 1]", "[Technique 2]"]
-      }
-    ],
-    
-    soft_skills: [
-      {
-        skill: "[Soft Skill 1 - e.g., 'Cross-functional Collaboration']",
-        evidence: "[Specific example of how you've demonstrated this skill]"
-      },
-      {
-        skill: "[Soft Skill 2 - e.g., 'Mentoring & Teaching']",
-        evidence: "[Example]"
-      },
-      {
-        skill: "[Soft Skill 3 - e.g., 'Strategic Thinking']", 
-        evidence: "[Example]"
-      }
+    methodologies: [
+      "Design Thinking",
+      "Design Sprint",
+      "Lean UX",
+      "Human-Centered Design",
+      "Agile Collaboration"
     ]
   },
+  
+  domain_expertise: [
+    {
+      area: "User Research",
+      description: "Conducting interviews, usability tests, heuristic evaluations, and synthesizing insights to identify user needs and opportunities.",
+      techniques: [
+        "User Interviews",
+        "Usability Testing",
+        "Heuristic Analysis",
+        "Surveys",
+        "Journey Mapping"
+      ]
+    },
+    {
+      area: "UX/UI Design",
+      description: "Designing end-to-end web and mobile experiences with a focus on accessibility, clarity, and consistency.",
+      techniques: [
+        "Wireframing",
+        "User Flows",
+        "Prototyping",
+        "Design Systems",
+        "Visual Design"
+      ]
+    },
+    {
+      area: "Content & Marketing",
+      description: "Supporting brands through SEO strategy, content creation, storytelling, and performance analysis.",
+      techniques: [
+        "SEO",
+        "Email Automation",
+        "Social Content Strategy"
+      ]
+    }
+  ],
+  
+  soft_skills: [
+    {
+      skill: "Cross-functional Collaboration",
+      evidence: "Worked with developers, marketers, and stakeholders to clarify requirements and align user needs with business goals."
+    },
+    {
+      skill: "Teaching & Communication",
+      evidence: "Seven years of teaching experience in international schools and universities strengthened her ability to explain complex ideas clearly and adapt to different audiences."
+    },
+    {
+      skill: "Research & Critical Thinking",
+      evidence: "Academic background in Political Science and History enables deep problem framing, systemic analysis, and context-aware design decisions."
+    },
+    {
+      skill: "Adaptability & Multilingual Communication",
+      evidence: "Fluent in Spanish, English, and French, with functional Italian and Portuguese — useful for multicultural user research and global products."
+    },
+    {
+      skill: "Teamwork",
+      evidence: "Former competitive athlete in 400m and 4x100 relay,  where I learned to perform with focus and discipline on my own, and to coordinate seamlessly within a team. Sports taught me resilience, collaboration, and the ability to switch naturally between independent work and collective effort"
+    }
+  ]
+},
+
 
   // =============================================================================
   // EDUCATION & BACKGROUND
   // =============================================================================
-  education: {
-    formal: [
-      {
-        degree: "[Degree Type and Major - e.g., 'Bachelor of Science in Computer Science']",
-        school: "[University/College Name]",
-        graduation_year: "[Year]",
-        location: "[City, State]",
-        relevant_coursework: [
-          "[Relevant Course 1]",
-          "[Relevant Course 2]"
-        ],
-        achievements: [
-          "[Academic achievement - e.g., 'Magna Cum Laude', 'Dean's List']"
-        ]
-      }
-    ],
-    
-    certifications: [
-      {
-        name: "[Certification Name]",
-        issuer: "[Issuing Organization]", 
-        date: "[Date Earned]",
-        status: "[Active/Expires Date]"
-      }
-    ],
-    
-    continuous_learning: [
-      "[Recent course, workshop, or conference you attended]",
-      "[Book or resource that influenced your work]",
-      "[Skill you're currently developing]"
-    ]
-  },
+education: {
+  formal: [
+    {
+      degree: "UX/UI Design",
+      school: "IMMUNE Institute of Technology",
+      location: "Madrid, Spain"
+    },
+    {
+      degree: "Digital Marketing & Data",
+      school: "Data Science",
+      location: "Paris, France"
+    },
+    {
+      degree: "M.A. in Contemporary History",
+      school: "Paris University",
+      location: "Paris, France"
+    },
+    {
+      degree: "B.A. in Political Science",
+      school: "University of Buenos Aires (UBA)",
+      location: "Buenos Aires, Argentina"
+    }
+  ],
 
+  certifications: [],
+
+  continuous_learning: [
+    "Accessibility and inclusive design",
+    "Trying to learn at least one new AI tool per week (there are too many, send help)"
+  ]
+},
   // =============================================================================
   // CAREER NARRATIVE
   // =============================================================================
-  career_story: {
-    origin: `
-    [How did you get started in your field? What sparked your interest?
-    This should be a personal story that shows your motivation and passion.]
-    `,
-    
-    key_transitions: [
-      {
-        from: "[Previous role/field]",
-        to: "[New role/field]", 
-        reason: "[Why you made this change]",
-        outcome: "[What you gained from this transition]"
-      }
-    ],
-    
-    current_focus: `
-    [What are you focused on in your career right now? 
-    What problems are you most excited to solve?]
-    `,
-    
-    future_goals: `
-    [Where do you see yourself heading? What impact do you want to make?]
-    `
-  },
+ career_story: {
+  origin: `
+  Ayelén grew up between Argentina and France, which sparked her curiosity about how people think, learn, and interact across cultures. Before discovering UX/UI, she spent several years teaching and doing research, experiences that taught her to listen deeply, simplify complex ideas, and understand people in context.
+  `,
+  
+  key_transitions: [
+    {
+      from: "Education & Research",
+      to: "UX/UI Design",
+      reason: "She realized she wanted to combine analysis, creativity, and human behavior into something more hands-on and impactful.",
+      outcome: "A design approach grounded in empathy, critical thinking, and clarity, strengthened by her background in Political Science and History."
+    }
+  ],
+  
+  current_focus: `
+  She now focuses on designing user-centered, accessible digital products through research, clear structure, and thoughtful interfaces. Her work blends creativity with analytical thinking to solve real problems with intention.
+  `,
+  
+future_goals: `
+Ayelén wants to keep designing inclusive, thoughtful products that genuinely help people, while accepting that, sadly, she won’t be able to solve every problem in the world by herself (what an unfair responsibility to put on one person’s shoulders!). Still, through research, empathy, and solid UX practices, she hopes to make small but meaningful improvements wherever design can create clarity, accessibility, and a better experience for users.
+`
+},
+
 
   // =============================================================================
   // WORKING STYLE & PREFERENCES
   // =============================================================================
-  working_style: {
-    collaboration_approach: `
-    [How do you prefer to work with others? What makes you effective in teams?]
-    `,
-    
-    problem_solving_process: `
-    [Describe your approach to tackling complex problems]
-    `,
-    
-    communication_style: `
-    [How do you communicate with different stakeholders?]
-    `,
-    
-    ideal_work_environment: `
-    [What type of work environment brings out your best work?]
-    `
-  },
+ working_style: {
+  collaboration_approach: `
+  I’m a flexible collaborator who adapts easily to different teams, workflows, and project rhythms. I enjoy working independently when needed, but I thrive in environments where ideas flow openly and everyone contributes to building something better together.
+  `,
+  
+  problem_solving_process: `
+  My process always starts with a good old to-do list — once everything is on paper, the path forward becomes clearer and I can break problems into manageable steps. From there, it’s a mix of research, iteration, and structure to move steadily toward solutions.
+  `,
+  
+  communication_style: `
+  My communication is clear, organized, and professional… with just enough humor to keep things human. I adapt my tone depending on the audience, ensuring that stakeholders, developers, and non-designers all feel included and informed.
+  `,
+  
+  ideal_work_environment: `
+  I do my best work in environments grounded in good communication and mutual respect, places where people listen, share, and collaborate without ego. A healthy team culture makes better products, and that’s the kind of space I aim to contribute to.
+  `
+},
 
   // =============================================================================
   // INTERESTS & PERSONAL TOUCHES
   // =============================================================================
-  personal_interests: {
-    professional_interests: [
-      "[Professional interest 1 - e.g., 'AI ethics in design']",
-      "[Professional interest 2 - e.g., 'Open source contributions']"
-    ],
-    
-    hobbies: [
-      "[Hobby 1 that might be relevant to your work or personality]",
-      "[Hobby 2]"
-    ],
-    
-    fun_facts: [
-      "[Interesting fact about you that humanizes your professional persona]",
-      "[Another fun fact]"
-    ]
-  }
+ personal_interests: {
+  professional_interests: [
+    "AI ethics in design",
+    "Accessibility and inclusive digital experiences"
+  ],
+  
+  hobbies: [
+    "Traveling (yes, the cliché is true: new and old places always inspire me)",
+    "Inviting people over and cooking for the people I love"
+  ],
+  
+  fun_facts: [
+    "I can switch languages mid-sentence without realizing it, a side effect of growing up between cultures.",
+    "I used to be a competitive athlete, which explains my love for structure and discipline"
+  ]
+},
+
 };
 
 // =============================================================================
@@ -420,26 +471,40 @@ export const PORTFOLIO_KNOWLEDGE = {
 export const CONVERSATION_GUIDANCE = {
   // Tone and personality guidelines
   communication_style: {
-    tone: "[Describe how you want the AI to represent you - e.g., 'Professional but approachable', 'Enthusiastic and curious']",
-    voice: "[Describe your communication voice - e.g., 'Direct and clear', 'Thoughtful and detailed']",
-    avoid: "[Things to avoid - e.g., 'Overly technical jargon', 'Being too modest about achievements']"
+    tone: "Professional, approachable, and warm — with small touches of light humor when appropriate.",
+    voice: "Clear, thoughtful, and human. Structured when explaining design decisions, but never robotic.",
+    avoid: "Overly technical jargon, sounding too formal or distant, minimizing achievements, or giving excessively long academic explanations."
   },
   
   // Key messages you want to convey
   key_messages: [
-    "[Message 1 - e.g., 'I'm passionate about creating inclusive design solutions']",
-    "[Message 2 - e.g., 'I believe in data-driven decision making']", 
-    "[Message 3 - e.g., 'I love mentoring and growing teams']"
+    "I'm passionate about accessible, user-centered design grounded in research and real human needs.",
+    "My multidisciplinary background strengthens my approach, combining analysis, empathy, and creativity.",
+    "I value clarity and thoughtful problem-solving in every project."
   ],
   
   // Common questions and how to handle them
   frequently_asked: {
-    "Tell me about yourself": `Reference the elevator pitch and expand with current role context`,
-    "What's your biggest achievement?": `Focus on [specific project/achievement] with metrics and impact`,
-    "What are you looking for?": `[How you want to answer this - current goals, ideal opportunities]`,
-    "What's your weakness?": `[A thoughtful response about growth areas and how you're addressing them]`
+    "Tell me about yourself": `
+      Reference the elevator pitch and connect it to her journey from teaching and research 
+      into UX/UI design, highlighting empathy, multicultural perspective, and her current focus.
+    `,
+    
+    "What's your biggest achievement?": `
+      Instead of highlighting a project, emphasize a personal milestone: moving alone to another city  at 17 to pursue her studies. Even while missing home and  struggling at first, she persisted because she knew it was the path toward creating the life she dreamed of. Keep it confident but humble.
+    `,
+    
+    "What are you looking for?": `
+      Explain that Ayelén is open to meaningful UX/UI opportunities where she can contribute 
+      to accessible, thoughtful, research-informed design , ideally in teams with good 
+      communication, respect and good sense of humor.
+    `,
+    "What's your weakness?": `
+     Ayelén is actively working on her patience, especially in moments when she wants everything to move faster (projects, processes, people, deadlines… the whole world). She’s learning to slow down, trust the process, and give ideas the time they need to mature, using structure, planning, and a bit of humor to stay grounded.
+    `
   }
 };
+
 
 // =============================================================================
 // CUSTOMIZATION CHECKLIST:

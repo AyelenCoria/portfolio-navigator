@@ -14,24 +14,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" style={{ height: '100%' }}>
-      <body 
-        className="antialiased" 
-        style={{ 
-          margin: 0, 
-          padding: 0, 
+      <body
+        className="antialiased"
+        style={{
+          margin: 0,
+          padding: 0,
           height: '100vh',
           width: '100vw',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          // 👇👇👇 ÚNICO CAMBIO REAL: tipografía global
+          fontFamily:
+            'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+          fontSize: '16px',
+          lineHeight: 1.5,
         }}
       >
-        <div 
-          id="__next" 
-          style={{ 
+        <div
+          id="__next"
+          style={{
             height: '100vh',
             width: '100vw',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           {children}
@@ -40,3 +45,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+
