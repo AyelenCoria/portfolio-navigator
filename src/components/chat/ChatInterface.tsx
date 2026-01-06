@@ -71,10 +71,10 @@ I consider time, constraints, budget and access to users to understand the depth
 **Select the right methodology**  
 The method I choose depends on what we need to learn and where we are in the research process. In discovery, I explore the problem space through interviews, observations, surveys and competitor analysis to understand what users need, how they behave and why. In validation and testing, I use usability tests, concept evaluations, prototype walkthroughs and feedback analysis to check whether ideas actually work for real people. In post launch, I rely on analytics, heatmaps, surveys and behavioral data to see how the product performs in the real world and uncover opportunities for improvement.
 
-4. **Collect and document data**  
+**Collect and document data**  
 I gather insights directly from users and the market to understand behaviors, expectations and opportunities. While collecting data, I also document everything clearly and keep it well organized, so that anyone on the team can access the findings and use them to guide decisions.
 
-5. **Analyze my findings**   
+**Analyze my findings**   
 I look for patterns, synthesize insights and turn them into direction for design and product decisions.
 `;
 
@@ -168,10 +168,10 @@ const SKILLS_CATEGORIES: SkillCategory[] = [
 // --------------------------------------
 
 const MEDIUM_EXPLANATION_TEXT = `
-Medium is the platform where I publish my detailed case studies, design breakdowns and in depth research insights. You can explore my profile here:
+Medium is where I dive deeper into the case studies you can find in my portfolio, and where I also share additional projects and research work that are not included there. You can explore my profile here:
 [Visit my Medium profile](https://medium.com/@rayelencoria)
 
-If you prefer a shorter overview of my work, you can always explore the "My Work", where I highlight selected projects in a more condensed way.
+
 `;
 
 
@@ -184,8 +184,8 @@ const formatMessage = (message: string): string => {
 
   const cleanedMessage = message
     .replace(/^#{1,6}\s+/gm, '')
-    .replace(/\*\*(.*?)\*\*/g, '$1')
-    .replace(/\*(.*?)\*/g, '$1')
+    // .replace(/\*\*(.*?)\*\*/g, '$1')  // <- no borrar bold
+    // .replace(/\*(.*?)\*/g, '$1')      // <- no borrar italics
     .replace(/```[\s\S]*?```/g, '')
     .replace(/`([^`]+)`/g, '$1')
     // línea que borraba los links, eliminada
@@ -223,23 +223,6 @@ const formatMessage = (message: string): string => {
     .join('\n\n');
 };
 
-function messageContentToText(content: unknown): string {
-  if (typeof content === "string") return content
-
-  if (Array.isArray(content)) {
-    return content
-      .map((part: any) => {
-        if (typeof part === "string") return part
-        if (part?.type === "text" && typeof part?.text === "string") return part.text
-        if (typeof part?.text === "string") return part.text
-        return ""
-      })
-      .filter(Boolean)
-      .join("")
-  }
-
-  return ""
-}
 
 // ==================================================================
 // COMPONENT
@@ -428,38 +411,38 @@ const ChatInterface = () => {
       return;
     }
 
-    if (lower.includes('work')) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: 'assistant',
-          content: {
-            message:
-              'Here are two ways to explore my work: you can browse selected projects here in the chat, or read my in depth case studies on Medium.',
-            work: true,
-            portfolio: true,
-            buttons: [
-              {
-                id: 'my_design_process',
-                text: 'My Design Process',
-                action: 'MY_DESIGN_PROCESS',
-                variant: 'secondary',
-                linkType: 'internal',
-              },
-              {
-                id: 'medium_profile',
-                text: 'Medium',
-                action: 'MEDIUM',
-                variant: 'secondary',
-                linkType: 'internal',
-              },
-            ],
+   if (button.action === 'work') {
+  setMessages((prev) => [
+    ...prev,
+    {
+      type: 'assistant',
+      content: {
+        message:
+          'There are two ways to explore my work: you can browse selected projects in the Works section of my Portfolio, or read my in-depth case studies on Medium.',
+        work: true,
+        buttons: [
+          {
+            id: 'my_design_process',
+            text: 'My Design Process',
+            action: 'MY_DESIGN_PROCESS',
+            variant: 'secondary',
+            linkType: 'internal',
           },
-        },
-      ]);
-      setIsLoading(false);
-      return;
-    }
+          {
+            id: 'medium_profile',
+            text: 'Medium',
+            action: 'MEDIUM',
+            variant: 'secondary',
+            linkType: 'internal',
+          },
+        ],
+      },
+    },
+  ]);
+  setIsLoading(false);
+  return;
+}
+
 
     if (lower.includes('skills')) {
       const topLevelButtons: ChatButton[] = SKILLS_CATEGORIES.map((cat) => ({
@@ -663,7 +646,9 @@ I combine qualitative and quantitative methods such as in depth interviews, obse
 
 Once the data is collected, I synthesize everything through affinity mapping, user personas and journey mapping.
 
-I also document the research process clearly so it remains accessible, organized and scalable for anyone who needs it. AI also supports documentation by helping generate interview scripts, summarize notes or evaluate multiple solutions. It does not replace design judgment, but it speeds up exploration and frees time for deeper thinking.
+I also document the research process clearly so it remains accessible, organized and scalable for anyone who needs it. 
+
+AI supports my research workflow across different stages, from drafting interview scripts and summarizing notes to exploring and comparing multiple solution directions. It does not replace design judgment, but it helps accelerate exploration and frees up time for deeper thinking.
 `;
 
       setMessages((prev) => [
@@ -690,7 +675,7 @@ I also document the research process clearly so it remains accessible, organized
       };
 
       const body = `
-At this stage I turn insights into direction. I clarify the problem we need to solve, identify the opportunities with the highest impact and decide where to focus next.
+At this stage I turn insights into direction. I clarify the problem we need to solve, identify the opportunities with the highest impact and decide where to focus next.
 
 From there, I explore early concepts through user flows and information architecture, using techniques like card sorting when needed. I then move into low and high fidelity wireframes using tools such as Figma or Excalidraw to compare different directions and refine the structure before advancing to detailed design.
 `;
@@ -876,9 +861,8 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
           type: 'assistant',
           content: {
             message:
-              'Here are two ways to explore my work: you can browse selected projects here in the chat, or read my in depth case studies on Medium.',
+              'There are two ways to explore my work: you can browse selected projects in the Works section of my Portfolio, or read my in-depth case studies on Medium.',
             work: true,
-            portfolio: true,
             buttons: [
               {
                 id: 'my_design_process',
@@ -1431,16 +1415,12 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
       );
     }
 
-    // 2) Mensaje como objeto (MessageContent)
-    const content = message.content as MessageContent;
+   // 2) Mensaje como objeto (MessageContent)
+const content = message.content as MessageContent;
 
-    // Reordenamos el texto SOLO cuando es "work"
-    let mainText = content.message;
-    if (content.work) {
-      mainText =
-        "I am a UX/UI Designer and UX Researcher who loves creating empathetic digital products thought user-centered design.\n\n" +
-        content.message;
-    }
+// Texto principal (sin frase introductoria)
+let mainText = content.message;
+
 
     return (
       <div
@@ -1517,8 +1497,10 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         {message.type === 'user' && (
           <div className="message-content">
             {formatMessage(
-  messageContentToText(typeof content === "string" ? content : message.content)
-)}
+              typeof content === 'string'
+                ? (content as unknown as string)
+                : (message.content as string)
+            )}
           </div>
         )}
 

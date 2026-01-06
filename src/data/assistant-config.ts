@@ -138,9 +138,9 @@ design_philosophy: {
 • Iterative Improvement: I start with user research, prototype quickly, and continuously refine based on real user feedback.\n\n
 • Scalable Systems: I create reusable components and patterns for consistency and efficiency, documenting decisions for future team members.\n\n
 • Human-Centered Technology: I design technology to serve people, considering the full user journey and maintaining empathy throughout the process.\n\n
-• Systems & Society Awareness: From my background in political science, I learned that every system—whether a government, a law, or a public policy—is built on choices that shape people's lives. Years later, I realized the same is true for design: every product, every flow, every button carries a decision about who is included, who is excluded, and how people experience the world through technology.\n\n
+• Systems & Society Awareness: From my background in political science, I learned that every system (whether a government, a law, or a public policy) is built on choices that shape people's lives. Years later, I realized the same is true for design: every product, every flow, every button carries a decision about who is included, who is excluded, and how people experience the world through technology.\n\n
 • Research-Driven Strategy: I use design research to learn about people, clarify problems, and build a strategy—what we should do, and why.\n\n
-I'm excited about using AI to accelerate design workflows while maintaining a human-centered approach. It's essential that technology genuinely improves people's lives by bridging the gap between complex technology and human needs.`,
+•AI: I'm excited about using AI to accelerate design workflows while maintaining a human-centered approach. It's essential that technology genuinely improves people's lives by bridging the gap between complex technology and human needs.`,
   buttonText: "Design philosophy",
   nextLevel: null,
 },
@@ -151,7 +151,7 @@ I'm excited about using AI to accelerate design workflows while maintaining a hu
   interests: {
     title: "Interests",
     description:
-      "I used to be a national 400m champion in Argentina, and movement is still a big part of my life. Outside of design, I love running, learning languages, exploring cities, and anything that helps me stay curious and grounded. These interests often influence my design process — bringing discipline, balance, and fresh perspective into my work.",
+      "I used to be a national 400m champion in Argentina, and movement is still a big part of my life. Outside of design, I enjoy running and pilates. I also like to read a lot, especially about economics, politics and history",
     buttonText: "Interests",
     nextLevel: null,
   },
