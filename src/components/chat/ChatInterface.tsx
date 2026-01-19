@@ -168,10 +168,9 @@ const SKILLS_CATEGORIES: SkillCategory[] = [
 // --------------------------------------
 
 const MEDIUM_EXPLANATION_TEXT = `
-Medium is the platform where I publish my detailed case studies, design breakdowns and in depth research insights. You can explore my profile here:
+Medium is the platform where I publish some of my case studies, design breakdowns and in depth research insights. You can explore my profile here:
 [Visit my Medium profile](https://medium.com/@rayelencoria)
 
-If you prefer a shorter overview of my work, you can always explore the "My Work", where I highlight selected projects in a more condensed way.
 `;
 
 
