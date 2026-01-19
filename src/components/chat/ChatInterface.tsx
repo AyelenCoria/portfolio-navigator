@@ -437,7 +437,6 @@ const ChatInterface = () => {
             message:
               'There are two ways to explore my work: you can browse selected projects in the Works section of my portfolio, or read my in-depth case studies on Medium.',
             work: true,
-            portfolio: true,
             buttons: [
               {
                 id: 'go_to_portfolio',
@@ -887,7 +886,6 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
             message:
               'Here are two ways to explore my work: you can browse selected projects here in the chat, or read my in depth case studies on Medium.',
             work: true,
-            portfolio: true,
             buttons: [
               {
                 id: 'go_to_portfolio',
@@ -1564,12 +1562,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
           </div>
         )}
 
-        {/* PORTFOLIO CARDS */}
-        {content.portfolio && (
-          <div className="portfolio-display mt-4">
-            <ThumbnailCarousel />
-          </div>
-        )}
+       {/* PORTFOLIO CARDS */}
+{content.portfolio && !content.work && (
+  <div className="portfolio-display mt-4">
+    <ThumbnailCarousel />
+  </div>
+)}
+
 
         {/* CONTACT */}
         {content.contact && (
