@@ -71,10 +71,10 @@ I consider time, constraints, budget and access to users to understand the depth
 **Select the right methodology**  
 The method I choose depends on what we need to learn and where we are in the research process. In discovery, I explore the problem space through interviews, observations, surveys and competitor analysis to understand what users need, how they behave and why. In validation and testing, I use usability tests, concept evaluations, prototype walkthroughs and feedback analysis to check whether ideas actually work for real people. In post launch, I rely on analytics, heatmaps, surveys and behavioral data to see how the product performs in the real world and uncover opportunities for improvement.
 
-**Collect and document data**  
+4. **Collect and document data**  
 I gather insights directly from users and the market to understand behaviors, expectations and opportunities. While collecting data, I also document everything clearly and keep it well organized, so that anyone on the team can access the findings and use them to guide decisions.
 
-**Analyze my findings**   
+5. **Analyze my findings**   
 I look for patterns, synthesize insights and turn them into direction for design and product decisions.
 `;
 
@@ -168,11 +168,12 @@ const SKILLS_CATEGORIES: SkillCategory[] = [
 // --------------------------------------
 
 const MEDIUM_EXPLANATION_TEXT = `
-Medium is where I dive deeper into the case studies you can find in my portfolio, and where I also share additional projects and research work that are not included there. You can explore my profile here:
+Medium is the platform where I publish my detailed case studies, design breakdowns and in depth research insights. You can explore my profile here:
 [Visit my Medium profile](https://medium.com/@rayelencoria)
 
-
+If you prefer a shorter overview of my work, you can always explore the "My Work", where I highlight selected projects in a more condensed way.
 `;
+
 
 // --------------------------------------
 // Markdown cleaning
@@ -183,8 +184,11 @@ const formatMessage = (message: string): string => {
 
   const cleanedMessage = message
     .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
     .replace(/```[\s\S]*?```/g, '')
     .replace(/`([^`]+)`/g, '$1')
+    // línea que borraba los links, eliminada
     .replace(/^[-*_]{3,}$/gm, '')
     .replace(/^>\s*/gm, '')
     .replace(/\n\s*\n\s*\n/g, '\n\n')
@@ -219,6 +223,24 @@ const formatMessage = (message: string): string => {
     .join('\n\n');
 };
 
+function messageContentToText(content: unknown): string {
+  if (typeof content === "string") return content
+
+  if (Array.isArray(content)) {
+    return content
+      .map((part: any) => {
+        if (typeof part === "string") return part
+        if (part?.type === "text" && typeof part?.text === "string") return part.text
+        if (typeof part?.text === "string") return part.text
+        return ""
+      })
+      .filter(Boolean)
+      .join("")
+  }
+
+  return ""
+}
+
 // ==================================================================
 // COMPONENT
 // ==================================================================
@@ -228,14 +250,51 @@ const ChatInterface = () => {
     {
       type: 'assistant',
       content: {
-        message: "Hi! I'm Ayelén, a UX/UI Designer and UX Researcher. What would you like to explore?",
+        message:
+          "Hi! I'm Ayelén, a UX/UI Designer and UX Researcher. What would you like to explore?",
         buttons: [
-          { id: 'my-work', text: 'My Work', action: 'work', variant: 'outline', linkType: 'internal' },
-          { id: 'experience', text: 'Experience', action: 'experience', variant: 'outline', linkType: 'internal' },
-          { id: 'skills', text: 'Skills', action: 'skills', variant: 'outline', linkType: 'internal' },
-          { id: 'about-me', text: 'About Me', action: 'about', variant: 'outline', linkType: 'internal' },
-          { id: 'contact', text: 'Contact', action: 'CONTACT_ME', variant: 'outline', linkType: 'internal' },
-          { id: 'resume', text: 'Resume', action: 'DOWNLOAD_RESUME', variant: 'outline', linkType: 'internal' },
+          {
+            id: 'my-work',
+            text: 'My Work',
+            action: 'work',
+            variant: 'outline',
+            linkType: 'internal',
+          },
+          {
+            id: 'experience',
+            text: 'Experience',
+            action: 'experience',
+            variant: 'outline',
+            linkType: 'internal',
+          },
+          {
+            id: 'skills',
+            text: 'Skills',
+            action: 'skills',
+            variant: 'outline',
+            linkType: 'internal',
+          },
+          {
+            id: 'about-me',
+            text: 'About Me',
+            action: 'about',
+            variant: 'outline',
+            linkType: 'internal',
+          },
+          {
+            id: 'contact',
+            text: 'Contact',
+            action: 'CONTACT_ME',
+            variant: 'outline',
+            linkType: 'internal',
+          },
+          {
+            id: 'resume',
+            text: 'Resume',
+            action: 'DOWNLOAD_RESUME',
+            variant: 'outline',
+            linkType: 'internal',
+          },
         ],
       },
     },
@@ -369,7 +428,6 @@ const ChatInterface = () => {
       return;
     }
 
-    // ✅ FIX: work por texto (antes estaba button.action, y button no existe aquí)
     if (lower.includes('work')) {
       setMessages((prev) => [
         ...prev,
@@ -377,9 +435,19 @@ const ChatInterface = () => {
           type: 'assistant',
           content: {
             message:
-              'There are two ways to explore my work: you can browse selected projects in the Works section of my Portfolio, or read my in-depth case studies on Medium.',
+              'There are two ways to explore my work: you can browse selected projects in the Works section of my portfolio, or read my in-depth case studies on Medium.',
             work: true,
+            portfolio: true,
             buttons: [
+              {
+                id: 'go_to_portfolio',
+                text: 'Go to my portfolio',
+                action: 'GO_TO_PORTFOLIO',
+                variant: 'secondary',
+                linkType: 'external',
+                url: 'https://ayelencoria.com',
+              },
+              
               {
                 id: 'my_design_process',
                 text: 'My Design Process',
@@ -435,7 +503,7 @@ const ChatInterface = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: userInputText,
+          message: userInput.trim(),
           messages: [...messages, userMessage],
           instructions: ASSISTANT_INSTRUCTIONS,
         }),
@@ -478,7 +546,8 @@ const ChatInterface = () => {
         ...prev,
         {
           type: 'assistant',
-          content: 'I am sorry, I am having trouble connecting right now. Please try again in a moment.',
+          content:
+            "I am sorry, I am having trouble connecting right now. Please try again in a moment.",
         },
       ]);
     } finally {
@@ -512,14 +581,62 @@ const ChatInterface = () => {
     // MY DESIGN PROCESS, pantalla 2
     if (button.action === 'MY_DESIGN_PROCESS') {
       const processButtons: ChatButton[] = [
-        { id: 'process_research_discovery', text: 'Research & Discovery', action: 'PROCESS_RESEARCH_DISCOVERY', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_strategic_concepting', text: 'Strategic Concepting', action: 'PROCESS_STRATEGIC_CONCEPTING', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_ai_assisted_ideation', text: 'AI Assisted Ideation', action: 'PROCESS_AI_ASSISTED_IDEATION', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_prototyping', text: 'Prototyping', action: 'PROCESS_PROTOTYPING', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_usability_testing', text: 'Usability Testing', action: 'PROCESS_USABILITY_TESTING', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_collaboration_devs', text: 'Collaboration with Developers', action: 'PROCESS_COLLABORATION_DEVS', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_post_launch', text: 'Post Launch Evaluation', action: 'PROCESS_POST_LAUNCH', variant: 'secondary', linkType: 'internal' },
-        { id: 'process_back_to_work', text: '← Back to My Work', action: 'work', variant: 'secondary', linkType: 'internal' },
+        {
+          id: 'process_research_discovery',
+          text: 'Research & Discovery',
+          action: 'PROCESS_RESEARCH_DISCOVERY',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_strategic_concepting',
+          text: 'Strategic Concepting',
+          action: 'PROCESS_STRATEGIC_CONCEPTING',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_ai_assisted_ideation',
+          text: 'AI Assisted Ideation',
+          action: 'PROCESS_AI_ASSISTED_IDEATION',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_prototyping',
+          text: 'Prototyping',
+          action: 'PROCESS_PROTOTYPING',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_usability_testing',
+          text: 'Usability Testing',
+          action: 'PROCESS_USABILITY_TESTING',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_collaboration_devs',
+          text: 'Collaboration with Developers',
+          action: 'PROCESS_COLLABORATION_DEVS',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_post_launch',
+          text: 'Post Launch Evaluation',
+          action: 'PROCESS_POST_LAUNCH',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'process_back_to_work',
+          text: '← Back to My Work',
+          action: 'work',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
       ];
 
       setMessages((prev) => [
@@ -537,6 +654,8 @@ const ChatInterface = () => {
       return;
     }
 
+    // Design Process, pantallas 3 (solo texto + back, sin repetir título)
+
     if (button.action === 'PROCESS_RESEARCH_DISCOVERY') {
       const backButton: ChatButton = {
         id: 'back_my_design_process_from_research',
@@ -553,16 +672,17 @@ I combine qualitative and quantitative methods such as in depth interviews, obse
 
 Once the data is collected, I synthesize everything through affinity mapping, user personas and journey mapping.
 
-I also document the research process clearly so it remains accessible, organized and scalable for anyone who needs it. 
-
-AI supports my research workflow across different stages, from drafting interview scripts and summarizing notes to exploring and comparing multiple solution directions. It does not replace design judgment, but it helps accelerate exploration and frees up time for deeper thinking.
+I also document the research process clearly so it remains accessible, organized and scalable for anyone who needs it. AI also supports documentation by helping generate interview scripts, summarize notes or evaluate multiple solutions. It does not replace design judgment, but it speeds up exploration and frees time for deeper thinking.
 `;
 
       setMessages((prev) => [
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -588,7 +708,10 @@ From there, I explore early concepts through user flows and information architec
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -612,7 +735,10 @@ I use AI driven exploration to accelerate ideation and test variations quickly. 
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -636,7 +762,10 @@ I build interactive prototypes using Figma to validate ideas in a more realistic
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -660,7 +789,10 @@ Before developing anything, we need to make sure it actually works for real peop
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -684,7 +816,10 @@ I work closely with developers to make sure designs are feasible, clear and corr
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -708,7 +843,10 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         ...prev,
         {
           type: 'assistant',
-          content: { message: body, buttons: [backButton] },
+          content: {
+            message: body,
+            buttons: [backButton],
+          },
         },
       ]);
 
@@ -739,7 +877,7 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
       return;
     }
 
-    // ✅ FIX: WORK por botón (antes tenías lower.includes('work') que rompe Typescript acá)
+    // WORK (igual que comando de texto)
     if (button.action === 'work') {
       setMessages((prev) => [
         ...prev,
@@ -747,9 +885,18 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
           type: 'assistant',
           content: {
             message:
-              'There are two ways to explore my work: you can browse selected projects in the Works section of my Portfolio, or read my in-depth case studies on Medium.',
+              'Here are two ways to explore my work: you can browse selected projects here in the chat, or read my in depth case studies on Medium.',
             work: true,
+            portfolio: true,
             buttons: [
+              {
+                id: 'go_to_portfolio',
+                text: 'Go to my portfolio',
+                action: 'GO_TO_PORTFOLIO',
+                variant: 'secondary',
+                linkType: 'external',
+                url: 'https://ayelencoria.com',
+              },
               {
                 id: 'my_design_process',
                 text: 'My Design Process',
@@ -775,7 +922,12 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
     if (button.action === 'MEDIUM') {
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: MEDIUM_EXPLANATION_TEXT } },
+        {
+          type: 'assistant',
+          content: {
+            message: MEDIUM_EXPLANATION_TEXT,
+          },
+        },
       ]);
       return;
     }
@@ -856,10 +1008,34 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
       };
 
       const designMacroButtons: ChatButton[] = [
-        { id: 'skills_design_ux', text: 'UX Skills', action: 'skills_design_ux', variant: 'secondary', linkType: 'internal' },
-        { id: 'skills_design_ui', text: 'UI Skills', action: 'skills_design_ui', variant: 'secondary', linkType: 'internal' },
-        { id: 'skills_design_marketing', text: 'Marketing & Strategy', action: 'skills_design_marketing', variant: 'secondary', linkType: 'internal' },
-        { id: 'skills_design_collaboration', text: 'Collaboration & Team Work', action: 'skills_design_collaboration', variant: 'secondary', linkType: 'internal' },
+        {
+          id: 'skills_design_ux',
+          text: 'UX Skills',
+          action: 'skills_design_ux',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'skills_design_ui',
+          text: 'UI Skills',
+          action: 'skills_design_ui',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'skills_design_marketing',
+          text: 'Marketing & Strategy',
+          action: 'skills_design_marketing',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
+        {
+          id: 'skills_design_collaboration',
+          text: 'Collaboration & Team Work',
+          action: 'skills_design_collaboration',
+          variant: 'secondary',
+          linkType: 'internal',
+        },
       ];
 
       setMessages((prev) => [
@@ -867,7 +1043,8 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         {
           type: 'assistant',
           content: {
-            message: 'Design skills I use to shape clear, accessible and human-centered digital experiences.',
+            message:
+              'Design skills I use to shape clear, accessible and human-centered digital experiences.',
             buttons: [backButton, ...designMacroButtons],
           },
         },
@@ -887,7 +1064,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
 
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: UX_SKILLS_TEXT, buttons: [backButton] } },
+        {
+          type: 'assistant',
+          content: {
+            message: UX_SKILLS_TEXT,
+            buttons: [backButton],
+          },
+        },
       ]);
 
       return;
@@ -904,7 +1087,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
 
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: UI_SKILLS_TEXT, buttons: [backButton] } },
+        {
+          type: 'assistant',
+          content: {
+            message: UI_SKILLS_TEXT,
+            buttons: [backButton],
+          },
+        },
       ]);
 
       return;
@@ -921,7 +1110,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
 
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: MARKETING_STRATEGY_TEXT, buttons: [backButton] } },
+        {
+          type: 'assistant',
+          content: {
+            message: MARKETING_STRATEGY_TEXT,
+            buttons: [backButton],
+          },
+        },
       ]);
 
       return;
@@ -938,7 +1133,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
 
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: COLLABORATION_TEXT, buttons: [backButton] } },
+        {
+          type: 'assistant',
+          content: {
+            message: COLLABORATION_TEXT,
+            buttons: [backButton],
+          },
+        },
       ]);
 
       return;
@@ -957,7 +1158,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
 
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: RESEARCH_OVERVIEW_TEXT, buttons: [backButton] } },
+        {
+          type: 'assistant',
+          content: {
+            message: RESEARCH_OVERVIEW_TEXT,
+            buttons: [backButton],
+          },
+        },
       ]);
 
       return;
@@ -1117,7 +1324,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
     if (button.action === 'CONTACT_ME') {
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: 'Here is how you can get in touch with me:', contact: true } },
+        {
+          type: 'assistant',
+          content: {
+            message: 'Here is how you can get in touch with me:',
+            contact: true,
+          },
+        },
       ]);
       setShowContactForm(true);
       return;
@@ -1127,7 +1340,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
     if (button.action === 'DOWNLOAD_RESUME') {
       setMessages((prev) => [
         ...prev,
-        { type: 'assistant', content: { message: 'Here is my resume download:', resume: true } },
+        {
+          type: 'assistant',
+          content: {
+            message: 'Here is my resume download:',
+            resume: true,
+          },
+        },
       ]);
       return;
     }
@@ -1157,7 +1376,10 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
             content:
               typeof data.message === 'string'
                 ? data.message
-                : { message: data.message.message || '', buttons: data.message.buttons },
+                : {
+                    message: data.message.message || '',
+                    buttons: data.message.buttons,
+                  },
           },
         ]);
       }
@@ -1173,6 +1395,7 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
   // ==================================================================
 
   const renderMessage = (message: Message, index: number, isLast: boolean) => {
+    // 1) Mensaje como string
     if (typeof message.content === 'string') {
       const text = message.content as string;
 
@@ -1184,6 +1407,7 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         >
           {message.type === 'assistant' ? (
             <div className="assistant-row">
+              {/* Avatar AC */}
               <div
                 className="assistant-avatar"
                 style={{
@@ -1204,10 +1428,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
                 AC
               </div>
 
+              {/* Texto */}
               <div className="message-content">
                 <ReactMarkdown
                   components={{
-                    a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+                    a: (props) => (
+                      <a {...props} target="_blank" rel="noopener noreferrer" />
+                    ),
                   }}
                 >
                   {formatMessage(text)}
@@ -1221,8 +1448,16 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
       );
     }
 
+    // 2) Mensaje como objeto (MessageContent)
     const content = message.content as MessageContent;
-    const mainText = content.message;
+
+    // Reordenamos el texto SOLO cuando es "work"
+    let mainText = content.message;
+    if (content.work) {
+      mainText =
+        "I am a UX/UI Designer and UX Researcher who loves creating empathetic digital products thought user-centered design.\n\n" +
+        content.message;
+    }
 
     return (
       <div
@@ -1230,8 +1465,10 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         ref={isLast ? messagesEndRef : undefined}
         className={`message ${message.type}-message`}
       >
+        {/* ASSISTANT */}
         {message.type === 'assistant' && (
           <div className="assistant-row">
+            {/* Avatar AC */}
             <div
               className="assistant-avatar"
               style={{
@@ -1252,44 +1489,89 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
               AC
             </div>
 
+            {/* Texto + chips */}
             <div className="flex-1">
               <div className="message-content">
                 <ReactMarkdown
                   components={{
-                    a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+                    a: (props) => (
+                      <a {...props} target="_blank" rel="noopener noreferrer" />
+                    ),
                   }}
                 >
                   {formatMessage(mainText)}
                 </ReactMarkdown>
               </div>
 
+              {/* CHIPS */}
               {content.buttons && content.buttons.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '1.75rem' }}>
-                  {content.buttons.map((btn) => (
-                    <button
-                      key={btn.id}
-                      onClick={() => handleButtonClick(btn)}
-                      disabled={isLoading}
-                      className="chip-button"
-                      style={{ padding: '8px 16px' }}
-                    >
-                      {btn.text}
-                    </button>
-                  ))}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.75rem',
+                    marginTop: '1.75rem',
+                  }}
+                >
+                  {content.buttons.map((button) => {
+  const isExternal = button.linkType === 'external' && !!button.url;
+
+  if (isExternal) {
+    return (
+      <a
+        key={button.id}
+        href={button.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="chip-button"
+        style={{
+          padding: '8px 16px',
+          display: 'inline-flex',
+          alignItems: 'center',
+        }}
+      >
+        {button.text}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      key={button.id}
+      onClick={() => handleButtonClick(button)}
+      disabled={isLoading}
+      className="chip-button"
+      style={{ padding: '8px 16px' }}
+    >
+      {button.text}
+    </button>
+  );
+})}
+
+
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {message.type === 'user' && <div className="message-content">{formatMessage(mainText)}</div>}
+        {/* USER */}
+        {message.type === 'user' && (
+          <div className="message-content">
+            {formatMessage(
+  messageContentToText(typeof content === "string" ? content : message.content)
+)}
+          </div>
+        )}
 
+        {/* PORTFOLIO CARDS */}
         {content.portfolio && (
           <div className="portfolio-display mt-4">
             <ThumbnailCarousel />
           </div>
         )}
 
+        {/* CONTACT */}
         {content.contact && (
           <div className="contact-display mt-4">
             <div className="contact-items">
@@ -1326,12 +1608,14 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
             </div>
 
             <div className="message-content" style={{ marginTop: '1rem' }}>
-              I am always open to discussing design challenges, new opportunities or simply connecting with fellow designers and researchers. Feel free to reach out.
+              I am always open to discussing design challenges, new opportunities or simply
+              connecting with fellow designers and researchers. Feel free to reach out.
             </div>
           </div>
         )}
 
-        {content.resume && <div className="resume-display" />}
+        {/* RESUME */}
+        {content.resume && <div className="resume-display">{/* link o botón de CV */}</div>}
       </div>
     );
   };
@@ -1350,8 +1634,10 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         lineHeight: '1.5',
       }}
     >
+      {/* HEADER */}
       <div className="chat-header">
         <div className="header-left">
+          {/* AVATAR AC */}
           <div className="avatar-container">
             <div
               style={{
@@ -1392,11 +1678,16 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         </button>
       </div>
 
+      {/* MESSAGES */}
       <div className="chat-messages">
-        {messages.map((message, index) => renderMessage(message, index, index === messages.length - 1))}
+        {messages.map((message, index) =>
+          renderMessage(message, index, index === messages.length - 1)
+        )}
+
         <div ref={messagesEndRef} />
       </div>
 
+      {/* THINKING INDICATOR */}
       {isLoading && (
         <div className="thinking-animation loading-indicator" style={{ padding: '12px 20px' }}>
           <div className="assistant-row">
@@ -1424,7 +1715,13 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
               <span className="dot" />
               <span className="dot" />
               <span className="dot" />
-              <span style={{ color: '#c8d2da', fontSize: '13px', letterSpacing: '0.08em' }}>
+              <span
+                style={{
+                  color: '#c8d2da',
+                  fontSize: '13px',
+                  letterSpacing: '0.08em',
+                }}
+              >
                 Thinking...
               </span>
             </div>
@@ -1432,7 +1729,9 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
         </div>
       )}
 
+      {/* INPUT + MAIN BUTTONS */}
       <div className="chat-input-and-buttons-container">
+        {/* INPUT */}
         <div className="chat-input-container">
           <form onSubmit={handleUserInputSubmit} className="chat-input-form">
             <div className="input-wrapper">
@@ -1444,13 +1743,18 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
                 className="chat-input"
                 disabled={isLoading}
               />
-              <button type="submit" className="send-button" disabled={!userInput.trim() || isLoading}>
+              <button
+                type="submit"
+                className="send-button"
+                disabled={!userInput.trim() || isLoading}
+              >
                 <LucideIcons.Send size={16} />
               </button>
             </div>
           </form>
         </div>
 
+        {/* BOTTOM MENU BUTTONS */}
         <div className="button-grid main-menu-buttons flex flex-wrap gap-3 mt-4 justify-start">
           {[
             { id: 'btn_work', text: 'My Work', action: 'work' },
@@ -1459,22 +1763,22 @@ After launch, I monitor how the product performs. I combine surveys, heatmaps, a
             { id: 'btn_about', text: 'About Me', action: 'about' },
             { id: 'btn_contact', text: 'Contact Me', action: 'CONTACT_ME' },
             { id: 'btn_resume', text: 'my-resume.pdf', action: 'DOWNLOAD_RESUME' },
-          ].map((btn) => (
+          ].map((button) => (
             <button
-              key={btn.id}
+              key={button.id}
               className="btn flex-shrink-0"
               onClick={() =>
                 handleButtonClick({
-                  id: btn.id,
-                  text: btn.text,
-                  action: btn.action,
+                  id: button.id,
+                  text: button.text,
+                  action: button.action,
                   variant: 'outline',
                   linkType: 'internal',
                 })
               }
               disabled={isLoading}
             >
-              {btn.text}
+              {button.text}
             </button>
           ))}
         </div>
